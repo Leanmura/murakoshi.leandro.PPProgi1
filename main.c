@@ -21,7 +21,7 @@ typedef struct{
     int muertos;
 }ePais;
 
-void actualizarRecuperados(ePais pais, int recHoy);
+void actualizarRecuperados(ePais* pais, int recHoy);
 
 
 void invertirCadena(char cadena[]);
@@ -33,22 +33,23 @@ void ordenarCaracteres(char cadena[]);
 int main()
 {
     ePais pais = {200, "Argentina", 300, 100, 100};
-    actualizarRecuperados(pais, 20);
-    printf("\n\n");
+    actualizarRecuperados(&pais, 20);
+    printf("%d\n\n", pais.recuperados);
 
     char cadena[] = {"LADadec"};
     invertirCadena(cadena);
+    printf("%s", cadena);
     printf("\n\n");
 
     ordenarCaracteres(cadena);
+    printf("%s", cadena);
 
     return 0;
 }
 
-void actualizarRecuperados(ePais pais, int recHoy)
+void actualizarRecuperados(ePais *pais, int recHoy)
 {
-    pais.recuperados = pais.recuperados + recHoy;
-    printf("Recuperados: %d", pais.recuperados);
+    (*pais).recuperados = (*pais).recuperados + recHoy;
 }
 
 void invertirCadena(char cadena[])
@@ -72,7 +73,7 @@ void invertirCadena(char cadena[])
             cadena[j]=aux;
         }
     }*/
-    printf("%s", cadena);
+
 }
 
 void ordenarCaracteres(char cadena[])
@@ -91,5 +92,4 @@ void ordenarCaracteres(char cadena[])
             }
         }
     }
-    printf("%s", cadena);
 }
